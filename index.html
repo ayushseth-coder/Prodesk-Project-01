@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Prodesk IT builds responsive websites, SEO strategies, and digital marketing campaigns for growing brands.">
+  <title>Prodesk IT | Digital Marketing Landing Page</title>
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --surface: rgba(255, 255, 255, 0.78);
+      --surface-solid: #ffffff;
+      --text: #14213d;
+      --muted: #5d697c;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #12b886;
+      --line: rgba(20, 33, 61, 0.12);
+      --shadow: 0 18px 48px rgba(20, 33, 61, 0.12);
+      --radius: 8px;
+      --container: min(1120px, calc(100% - 40px));
+    }
+
+    body.dark {
+      --bg: #08111f;
+      --surface: rgba(12, 23, 39, 0.78);
+      --surface-solid: #0f1b2d;
+      --text: #f6f8fb;
+      --muted: #b9c4d6;
+      --primary: #60a5fa;
+      --primary-dark: #3b82f6;
+      --accent: #34d399;
+      --line: rgba(255, 255, 255, 0.14);
+      --shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    img,
+    svg {
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: var(--container);
+      margin: 0 auto;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.24);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-link {
+      position: relative;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 2px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      color: var(--primary);
+    }
+
+    .nav-link:hover::after,
+    .nav-link:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-button {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      display: inline-grid;
+      place-items: center;
+      background: var(--surface-solid);
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .icon-button:hover,
+    .icon-button:focus-visible {
+      transform: translateY(-2px) scale(1.03);
+      border-color: var(--primary);
+      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.18);
+      outline: none;
+    }
+
+    .hamburger {
+      display: none;
+    }
+
+    .hamburger span {
+      width: 22px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 999px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 138px 0 72px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: 56px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 18px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--primary);
+      background: var(--surface-solid);
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(18, 184, 134, 0.14);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 22px;
+      font-size: clamp(2.55rem, 7vw, 4.9rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+      margin-bottom: 32px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 22px;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 16px 30px rgba(37, 99, 235, 0.26);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background: var(--primary-dark);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 22px 40px rgba(37, 99, 235, 0.34);
+      outline: none;
+    }
+
+    .btn-secondary {
+      background: var(--surface-solid);
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: var(--shadow);
+      outline: none;
+    }
+
+    .hero-visual {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--surface-solid);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-visual img {
+      width: 100%;
+      min-height: 420px;
+      object-fit: cover;
+    }
+
+    .section {
+      padding: 86px 0;
+    }
+
+    .section-header {
+      max-width: 680px;
+      margin: 0 auto 42px;
+      text-align: center;
+    }
+
+    .section-header h2 {
+      margin-bottom: 12px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 1.03rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 38px;
+      align-items: center;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .metric {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface-solid);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.55rem;
+      line-height: 1;
+      color: var(--primary);
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .service-card,
+    .contact-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface-solid);
+      box-shadow: 0 8px 24px rgba(20, 33, 61, 0.06);
+    }
+
+    .service-card {
+      padding: 28px;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .service-card:hover,
+    .service-card:focus-within {
+      transform: translateY(-10px);
+      border-color: rgba(37, 99, 235, 0.42);
+      box-shadow: var(--shadow);
+    }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      margin-bottom: 24px;
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+    }
+
+    .service-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.28rem;
+    }
+
+    .service-card p,
+    .about-copy p {
+      color: var(--muted);
+    }
+
+    .contact-card {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 13px 14px;
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.16);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    footer {
+      padding: 42px 0 30px;
+      border-top: 1px solid var(--line);
+      background: var(--surface-solid);
+    }
+
+    .footer-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .socials {
+      display: flex;
+      gap: 12px;
+    }
+
+    .copyright {
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .hamburger {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .nav-menu {
+        position: absolute;
+        top: 76px;
+        left: 0;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        transition: max-height 0.25s ease;
+      }
+
+      .nav-menu.open {
+        max-height: 320px;
+      }
+
+      .nav-menu li {
+        border-top: 1px solid var(--line);
+      }
+
+      .nav-link {
+        display: block;
+        padding: 16px var(--side-space, 20px);
+      }
+
+      .nav-link::after {
+        display: none;
+      }
+
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 120px;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .hero-visual img {
+        min-height: 280px;
+        max-height: 360px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      :root {
+        --container: min(100% - 28px, 1120px);
+      }
+
+      .nav-inner {
+        min-height: 68px;
+      }
+
+      .logo {
+        font-size: 1.08rem;
+      }
+
+      .logo-mark {
+        width: 34px;
+        height: 34px;
+      }
+
+      .nav-menu {
+        top: 68px;
+      }
+
+      .hero {
+        padding-top: 104px;
+      }
+
+      .button-row,
+      .btn {
+        width: 100%;
+      }
+
+      .metrics,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .contact-card {
+        padding: 22px;
+      }
+
+      .footer-grid {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" aria-label="Primary navigation">
+    <div class="container nav-inner">
+      <a class="logo" href="#home" aria-label="Prodesk IT home">
+        <span class="logo-mark">P</span>
+        <span>Prodesk IT</span>
+      </a>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li><a class="nav-link" href="#home">Home</a></li>
+        <li><a class="nav-link" href="#about">About</a></li>
+        <li><a class="nav-link" href="#services">Services</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="icon-button" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+          <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="icon-button hamburger" id="hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow"><span class="status-dot"></span> Digital marketing wing</p>
+          <h1>We Build Digital Experiences</h1>
+          <p class="hero-copy">
+            Prodesk IT helps ambitious teams launch fast, responsive, and conversion-focused web experiences backed by SEO and digital marketing strategy.
+          </p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="#contact">Get Started</a>
+            <a class="btn btn-secondary" href="#services">View Services</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Team workspace visual">
+          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=80" alt="Modern digital marketing team workspace">
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="hero-visual">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Team planning a digital project">
+        </div>
+        <div class="about-copy">
+          <p class="eyebrow"><span class="status-dot"></span> About Prodesk IT</p>
+          <h2>Practical strategy, clean execution, measurable growth.</h2>
+          <p>
+            We combine design discipline, frontend fundamentals, and marketing insight to create landing pages that load quickly, adapt to every screen, and guide visitors toward action.
+          </p>
+          <div class="metrics" aria-label="Project highlights">
+            <div class="metric"><strong>3x</strong><span>Core services</span></div>
+            <div class="metric"><strong>100%</strong><span>Responsive goal</span></div>
+            <div class="metric"><strong>P0</strong><span>MVP covered</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2>Services Built For Modern Campaigns</h2>
+          <p>Three focused service areas arranged with CSS Grid, designed to stay polished from mobile to desktop.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+                <path d="M16 16L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>SEO Optimization</h3>
+            <p>Technical audits, keyword planning, and on-page improvements that help search engines understand and rank your content.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M4 5H20V17H4V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M9 21H15M12 17V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Web Development</h3>
+            <p>Responsive landing pages and frontend modules built with semantic HTML, raw CSS architecture, and accessible interactions.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M4 17L9 12L13 15L20 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17 7H20V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Digital Marketing</h3>
+            <p>Campaign landing flows, performance messaging, and conversion-focused content blocks for stronger lead generation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2>Start Your Next Digital Sprint</h2>
+          <p>Use the demo form to show a complete conversion path for the landing page module.</p>
+        </div>
+
+        <form class="contact-card" id="contact-form">
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Full Name</label>
+              <input id="name" name="name" type="text" placeholder="Ayush Sharma" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email Address</label>
+              <input id="email" name="email" type="email" placeholder="ayush@example.com" autocomplete="email" required>
+            </div>
+            <div class="field full">
+              <label for="message">Project Brief</label>
+              <textarea id="message" name="message" placeholder="Tell us what you want to build." required></textarea>
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <a class="logo" href="#home" aria-label="Prodesk IT home">
+          <span class="logo-mark">P</span>
+          <span>Prodesk IT</span>
+        </a>
+        <div class="socials" aria-label="Social links">
+          <a class="icon-button" href="#" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M16 8A6 6 0 0 1 22 14V21H18V14A2 2 0 0 0 14 14V21H10V9H14V11A5 5 0 0 1 16 8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M2 9H6V21H2V9Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M4 5.5A2 2 0 1 0 4 1.5A2 2 0 0 0 4 5.5Z" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </a>
+          <a class="icon-button" href="#" aria-label="X">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 4L20 20M20 4L4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a class="icon-button" href="#" aria-label="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M9 19C4 20.5 4 16.5 2 16M15 22V18.5A3.2 3.2 0 0 0 14.1 16C17.1 15.7 20 14.5 20 9.8A4.6 4.6 0 0 0 18.8 6.6A4.2 4.2 0 0 0 18.7 3.4S17.7 3.1 15.3 4.6A11.6 11.6 0 0 0 8.7 4.6C6.3 3.1 5.3 3.4 5.3 3.4A4.2 4.2 0 0 0 5.2 6.6A4.6 4.6 0 0 0 4 9.8C4 14.5 6.9 15.7 9.9 16A3.2 3.2 0 0 0 9 18.5V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <p class="copyright">&copy; 2026 Prodesk IT. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const body = document.body;
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    const contactForm = document.getElementById('contact-form');
+
+    function setTheme(isDark) {
+      body.classList.toggle('dark', isDark);
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      themeIcon.innerHTML = isDark
+        ? '<circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><path d="M12 2V5M12 19V22M4.93 4.93L7.05 7.05M16.95 16.95L19.07 19.07M2 12H5M19 12H22M4.93 19.07L7.05 16.95M16.95 7.05L19.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'
+        : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+      localStorage.setItem('prodesk-theme', isDark ? 'dark' : 'light');
+    }
+
+    setTheme(localStorage.getItem('prodesk-theme') === 'dark');
+
+    themeToggle.addEventListener('click', () => {
+      setTheme(!body.classList.contains('dark'));
+    });
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    contactForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      alert('Thank you for contacting Prodesk IT. This demo form is working.');
+      contactForm.reset();
+    });
+  </script>
+</body>
+</html>
